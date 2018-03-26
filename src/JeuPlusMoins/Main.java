@@ -7,7 +7,9 @@ public class Main {
 		// TODO Auto-generated method stub
 		
 		ModeChallenger c = new ModeChallenger();
-		c.jeu();
-
+		//c.jeu();
+		ModeDefenseur d= new ModeDefenseur();
+		d.jeu();
+	
 	}
 }

@@ -42,8 +42,8 @@ public class ModeChallenger {
 	boolean verif(String verif) {
 		boolean combi = true;
 		for (int i = 0; i < 4; i++) {
-			// char c =;
-			int cmb = Character.getNumericValue(verif.charAt(i));
+			char c =verif.charAt(i);
+			int cmb = Character.getNumericValue(c);
 			if (cmb == tab[i]) {
 				System.out.print("=");
 			} else if (cmb < tab[i]) {
