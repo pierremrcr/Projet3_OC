@@ -1,25 +1,43 @@
 package com.projet3.jeuplusmoins;
 
 import java.util.Random;
+
 import java.util.Scanner;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-public class Attaque {
-	private int solutionOrdi[] = new int[4];
 
-	public Attaque(int solutionOrdi[]) {
+public class AttaquePlusMoins {
+	private int nbCases;
+	private int solutionOrdi[] = new int[nbCases];
+	static final Logger logger = LogManager.getLogger();
+	Scanner sc = new Scanner(System.in);
+	
+
+	public AttaquePlusMoins(int solutionOrdi[], int nbCases) {
 		
 		this.solutionOrdi = solutionOrdi;
+		this.nbCases = nbCases;
 		
 	}
 	
 	public boolean jeu() {
+		
+		String str;
+		int nb;
 
-			Scanner sc = new Scanner(System.in);
-			System.out.println("Veuillez proposer une combinaison : ");
-			String str = sc.nextLine();
-			int [] tab = new int[4];
+			do {
+			System.out.println("Veuillez proposer une combinaison de " + nbCases + " chiffres :");
+		    str = sc.nextLine();
+		    nb = str.length();
+		    if (nb !=nbCases) {
+		    	System.out.println("Votre combinaison ne fait pas " +nbCases+ " chiffres");
+		    	System.out.println();
+		    }
+			} while (nb != nbCases);
+			int [] tab = new int[nbCases];
 			// On caste la combinaison dans un entier puisque sc.nextLine() est un String
-			for (int i = 0; i < 4; i++) {
+			for (int i = 0; i < nbCases; i++) {
 				// Chaque caractère de la proposition est casté pour avoir un int
 				int cmb = Character.getNumericValue(str.charAt(i));
 				tab[i] = cmb;
@@ -36,7 +54,7 @@ public class Attaque {
 	// renvoit un booléen
 	boolean compare(int[] proposition) {
 		boolean combi = true;
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < nbCases; i++) {
 			// On isole chaque élément de la proposition de l'utilisateur afin d'obtenir la
 			// valeur numérique de l'élément sous forme d'un Int
 			

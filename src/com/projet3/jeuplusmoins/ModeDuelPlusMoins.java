@@ -1,27 +1,41 @@
 package com.projet3.jeuplusmoins;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.Properties;
 import java.util.Random;
 import java.util.Scanner;
 
 public class ModeDuelPlusMoins {
 	
+	int nbCases;
+	AttaquePlusMoins a;
+	DefensePlusMoins d;
+	static final Logger logger = LogManager.getLogger();
 	
-	int [] solutionJoueur= new int[4];
-	int [] solutionOrdi= new int[4];
+	public ModeDuelPlusMoins(int nbCases, boolean modedev) {
+		
+		int [] solutionJoueur= new int[nbCases];
+		int [] solutionOrdi= new int[nbCases];
 	
-	public ModeDuelPlusMoins() {
-	
-	for (int i = 0; i < 4; i++) {
-		Random r = new Random();
-		// On génère une combinaison aléatoire
-		solutionOrdi[i] = r.nextInt(9);
-	}
+		if (modedev == true) {
+			System.out.print("Solution : ");
+			for (int i = 0; i < nbCases; i++) {
+				Random r = new Random();
+				// Chaque chiffre de la combinaison va recevoir une valeur aléatoire entre 0 et
+				// 9
+				System.out.print(solutionOrdi[i] = r.nextInt(10));
+			}
+			System.out.println();
+			}
 	
 	Scanner sc = new Scanner(System.in);
 	int nb;
 	String str;
 	do {
-		System.out.println("Veuillez entrer votre combinaison secrète de 4 chiffres : ");
+		System.out.println("Veuillez entrer votre combinaison secrète de " + nbCases + " chiffres : ");
 		str = sc.nextLine();
 		nb = str.length();
 
@@ -44,15 +58,16 @@ public class ModeDuelPlusMoins {
 		}
 		}
 		//Tant que la combinaison ne fait pas 4 chiffres, on reste dans la boucle et on redemande une nouvelle combinaison
-		while (nb != 4);
+		while (nb != nbCases);
+        a = new AttaquePlusMoins(solutionOrdi,nbCases);
+        d = new DefensePlusMoins(solutionJoueur, nbCases);
+	
 	
 } 
 	
 	public void jeu() {
 	
-	
-		Attaque a= new Attaque(solutionOrdi);
-		Defense d= new Defense(solutionJoueur);
+		
 		int gagnant = 0;
 		
 		do {
@@ -72,7 +87,7 @@ public class ModeDuelPlusMoins {
 		while(gagnant == 0);
 		
 		
-	}
+	} 
 	
 
 }

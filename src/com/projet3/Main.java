@@ -1,7 +1,14 @@
 package com.projet3;
 
-import java.util.Scanner;
+import java.io.FileInputStream;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.InputMismatchException;
+import java.util.Properties;
+import java.util.Scanner;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 import com.projet3.jeuplusmoins.ModeChallengerPlusMoins;
 import com.projet3.jeuplusmoins.ModeDefenseurPlusMoins;
 import com.projet3.jeuplusmoins.ModeDuelPlusMoins;
@@ -12,10 +19,45 @@ import com.projet3.mastermind.ModeDuelMastermind;
 public class Main {
 
 	public static void main(String[] args) {
+		
+		
+		Properties prop = new Properties();
+		InputStream input = null;
+		int nbChiffres=0;
+		int nbCases=0;
+		int nbEssais=0;
+		boolean modedev = false;
+		final Logger logger = LogManager.getLogger();
+		
+		
+		try {
 
+			input = new FileInputStream("config.properties");
+
+			// load a properties file
+			prop.load(input);
+
+			nbChiffres = Integer.valueOf(prop.getProperty("nbChiffres"));
+			nbCases = Integer.valueOf(prop.getProperty("nbCases"));
+			nbEssais = Integer.valueOf(prop.getProperty("nbEssais"));
+			modedev = Boolean.parseBoolean((prop.getProperty("modedev")));
+			
+
+
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		} finally {
+			if (input != null) {
+				try {
+					input.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 		Scanner sc = new Scanner(System.in);
 		Scanner sc1 = new Scanner(System.in);
-		int jeu;
+		int jeu = 0;
 		int modePlusmoins;
 		int modeMastermind;
 		int answerChallenger;
@@ -34,17 +76,27 @@ public class Main {
 		System.out.println();
 
 		do {
-
-			System.out.println("Veuillez choisir un jeu :");
+         
+			System.out.print("Veuillez choisir un jeu : ");
+			if (modedev == true) {
+			System.out.println("(Mode Développeur activé)");
+			}
 			System.out.println();
 			System.out.println("1 pour le jeu du +/-");
 			System.out.println("2 pour le jeu du Mastermind");
 			System.out.println();
 			System.out.print("Votre choix : ");
+			
+			try {
 
 			jeu = sc.nextInt();
+			
+			} catch (InputMismatchException e) {
+				System.out.println("Erreur");
+			}
 
 			System.out.println();
+            
 
 			if (jeu == 1) {
 				System.out.println("Vous avez choisi le jeu du +/-");
@@ -78,8 +130,8 @@ public class Main {
 							System.out.println("Vous avez choisi le mode Challenger ");
 							System.out.println();
 
-							// ModeChallengerPlusMoins chal = new ModeChallengerPlusMoins();
-							// chal.jeu();
+							ModeChallengerPlusMoins chal = new ModeChallengerPlusMoins(nbCases, nbEssais, modedev);
+							chal.jeu();
 
 							do {
 								System.out.println("Voulez vous rejouer ? 1 : Oui 2 : Non");
@@ -104,8 +156,8 @@ public class Main {
 							System.out.println("Vous avez choisi le mode Défenseur ");
 							System.out.println();
 
-							// ModeDefenseurPlusMoins def = new ModeDefenseurPlusMoins();
-							// def.jeu();
+							ModeDefenseurPlusMoins defplusmoins = new ModeDefenseurPlusMoins(nbEssais, nbCases);
+							defplusmoins.jeu();
 
 							do {
 								System.out.println("Voulez vous rejouer ? 1 : Oui 2 : Non");
@@ -131,8 +183,8 @@ public class Main {
 							System.out.println("Vous avez choisi le mode Duel ");
 							System.out.println();
 
-							// ModeDuelPlusMoins duel = new ModeDuelPlusMoins();
-							// duel.jeu();
+							ModeDuelPlusMoins duelPlusMoins = new ModeDuelPlusMoins(nbCases, modedev);
+							duelPlusMoins.jeu();
 
 							do {
 								System.out.println("Voulez vous rejouer ? 1 : Oui 2 : Non");
@@ -198,8 +250,9 @@ public class Main {
 							System.out.println("Vous avez choisi le mode Challenger ");
 							System.out.println();
 
-							// ModeChallengerMastermind chal = new ModeChallengerMastermind();
-							// chal.jeu();
+							
+							ModeChallengerMastermind chal = new ModeChallengerMastermind(nbCases, nbChiffres, modedev, nbEssais);
+							chal.jeu();
 
 							do {
 								System.out.println("Voulez vous rejouer ? 1 : Oui 2 : Non");
@@ -223,8 +276,8 @@ public class Main {
 							System.out.println("Vous avez choisi le mode Défenseur ");
 							System.out.println();
 
-							// ModeDefenseurMastermind def = new ModeDefenseurMastermind();
-							// def.jeu();
+							ModeDefenseurMastermind defMastermind = new ModeDefenseurMastermind(nbEssais,nbChiffres,nbCases);
+							defMastermind.jeu();
 
 							do {
 								System.out.println("Voulez vous rejouer ? 1 : Oui 2 : Non");
@@ -249,8 +302,8 @@ public class Main {
 							System.out.println("Vous avez choisi le mode Duel ");
 							System.out.println();
 
-							// ModeDuelMastermind duel = new ModeDuelMastermind();
-							// duel.jeu();
+							ModeDuelMastermind duel = new ModeDuelMastermind(nbCases, nbChiffres, modedev);
+							duel.jeu();
 
 							do {
 								System.out.println("Voulez vous rejouer ? 1 : Oui 2 : Non");
@@ -296,3 +349,4 @@ public class Main {
 	}
 
 }
+

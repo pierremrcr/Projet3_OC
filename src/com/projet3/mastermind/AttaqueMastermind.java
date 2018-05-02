@@ -1,26 +1,41 @@
 package com.projet3.mastermind;
 
+
 import java.util.Scanner;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-public class Attaque {
-	private int solutionOrdi[] = new int[4];
-	int nbChiffre = 4;
+public class AttaqueMastermind {
+	int nbCases;
+	private int solutionOrdi[] = new int[nbCases];
+	int nbChiffres;
+	static final Logger logger = LogManager.getLogger();
+	Scanner sc = new Scanner(System.in);
 
-	public Attaque(int solutionOrdi[]) {
+	public AttaqueMastermind(int solutionOrdi[], int nbCases) {
 		
 		this.solutionOrdi = solutionOrdi;
-		
+		this.nbCases = nbCases;
 	}
 	
 	public boolean jeu() {
 	
-			Scanner sc = new Scanner(System.in);
-			System.out.println("Veuillez proposer une combinaison : ");
-			String str = sc.nextLine();
-			int [] tab = new int[nbChiffre];
+		String str;
+		int nb;
+
+			do {
+			System.out.println("Veuillez proposer une combinaison de " + nbCases + " chiffres :");
+		    str = sc.nextLine();
+		    nb = str.length();
+		    if (nb !=nbCases) {
+		    	System.out.println("Votre combinaison ne fait pas " +nbCases+ " chiffres");
+		    	System.out.println();
+		    }
+			} while (nb != nbCases);
+			int [] tab = new int[nbCases];
 			
 			// On caste la combinaison dans un entier puisque sc.nextLine() est un String
-			for (int i = 0; i < nbChiffre; i++) {
+			for (int i = 0; i < nbCases; i++) {
 				// Chaque caractère de la proposition est casté pour avoir un int
 				int cmb = Character.getNumericValue(str.charAt(i));
 				tab[i] = cmb;
@@ -41,11 +56,11 @@ public class Attaque {
 		// boolean combi = true;
 		int mal = 0, bien = 0;
 		// Première boucle parcourant la combinaison à deviner
-		for (int i = 0; i < nbChiffre; i++) {
+		for (int i = 0; i < nbCases; i++) {
 			boolean bienPlace = false;
 			boolean malPlace = false;
 			// Deuxième boucle parcourant la proposition
-			for (int j = 0; j < nbChiffre; j++) {
+			for (int j = 0; j < nbCases; j++) {
 				
 				int cmb = proposition[j];
 				// Comparaison de la proposition par rapport à la combinaison
@@ -65,7 +80,7 @@ public class Attaque {
 		}
 		System.out.println(mal + " chiffres présents et " + bien + " bien placés");
 
-		if (bien == nbChiffre)
+		if (bien == nbCases)
 			return true;
 		else
 			return false;

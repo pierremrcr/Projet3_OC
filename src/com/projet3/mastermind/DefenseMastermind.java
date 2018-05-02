@@ -1,29 +1,38 @@
 package com.projet3.mastermind;
 
 import java.util.ArrayList;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.util.Scanner;
 
-public class Defense {
+public class DefenseMastermind {
 
-	int[] solutionJoueur = new int[4];
+	private int nbCases;
+	private int[] solutionJoueur = new int[nbCases];
 	Scanner sc = new Scanner(System.in);
-	int nb;
-	ArrayList<int[]> listeCombi = new ArrayList<>();
-	String str;
-	int nbChiffre = 4;
+	private ArrayList<int[]> listeCombi = new ArrayList<>();
+	private int nbChiffres;
+	private int[] combiNb;
+	static final Logger logger = LogManager.getLogger();
+	
 
-	public Defense(int[] solutionJoueur) {
+	public DefenseMastermind(int[] solutionJoueur, int nbCases, int nbChiffres) {
 		this.solutionJoueur = solutionJoueur;
+		this.nbCases = nbCases;
+		this.combiNb = new int[nbCases];
+		this.nbChiffres = nbChiffres;
 		// On utilise la méthode generate() pour générer toutes les combinaisons et on
 	    // les stock dans la arraylist
-		listeCombi = generate();
+		//listeCombi = generate();
+		genAllSolution(0);
+		
 
 	}
 
 	public boolean jeu() {
 		System.out.println();
 		System.out.println("La solution du joueur est : ");
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < nbCases; i++) {
 			System.out.print(solutionJoueur[i]);
 		}
 		System.out.println();
@@ -43,23 +52,25 @@ public class Defense {
 		combi = listeCombi.get(indexAlea);
 		
 		System.out.println("L'ordinateur propose : ");
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < nbCases; i++) {
 			System.out.print(combi[i]);
 		}
 		
-		System.out.println("score : ");
-		//for (int i = 0; i < 2; i++) {
-			//System.out.print(score[i]);
-		//}
 		// On utilise la méthode compare() pour comparer la solution et la proposition
 		// de l'ordi et lui attribuer un score
 		score = compare(combi, solutionJoueur);
+		System.out.println();
+		System.out.println("score : ");
+		
+		System.out.println("Présents : " + score[1]);
+		System.out.println("Bien placés : " + score[0]);
+		
 		//Si le score obtenu est le même que le score gagnant, cela veut dire que l'ordi a trouvé la solution
 		//La méthode s'arrête et renvoit true
 		if (isSame(score, gagnant)) {
 			return true;
 		}
-
+		
 		System.out.println();
 
 
@@ -88,10 +99,10 @@ public class Defense {
 		int[] score = new int[2];
 		int bienPlace = 0;
 		int malPlace = 0;
-		for (int i = 0; i < nbChiffre; i++) {
+		for (int i = 0; i < nbCases; i++) {
 
 			// Deuxième boucle parcourant la proposition
-			for (int j = 0; j < nbChiffre; j++) {
+			for (int j = 0; j < nbCases; j++) {
 				
 				int cmb = proposition[j];
 				// Comparaison de la proposition par rapport à la combinaison
@@ -124,24 +135,39 @@ public class Defense {
 
 	// Méthode permettant de générer une arrayList comportant toutes les
 	// combinaisons possibles
-	public ArrayList<int[]> generate() {
-		// on crée une ArrayList qui va comporter toutes les combinaisons
-		ArrayList<int[]> combi = new ArrayList<>();
-		// On crée 4 boucles afin de générer toutes les combinaisons de 4 chiffres
-		// allant de 0 à 9
-		for (int i = 0; i <= 9; i++) {
-			for (int j = 0; j <= 9; j++) {
-				for (int k = 0; k <= 9; k++) {
-					for (int l = 0; l <= 9; l++) {
-						int tab[] = { i, j, k, l };
-						// Chaque combinaison généré par les boucles est stocké dans la ArrayList combi
-						combi.add(tab);
+//	public ArrayList<int[]> generate() {
+//		// on crée une ArrayList qui va comporter toutes les combinaisons
+//		ArrayList<int[]> combi = new ArrayList<>();
+//		// On crée 4 boucles afin de générer toutes les combinaisons de 4 chiffres
+//		// allant de 0 à 9
+//		for (int i = 0; i <= 9; i++) {
+//			for (int j = 0; j <= 9; j++) {
+//				for (int k = 0; k <= 9; k++) {
+//					for (int l = 0; l <= 9; l++) {
+//						int tab[] = { i, j, k, l };
+//						// Chaque combinaison généré par les boucles est stocké dans la ArrayList combi
+//						combi.add(tab);
+//
+//					}
+//				}
+//			}
+//		}
+//		return combi;
+//	}
+	
+	private void genAllSolution(int j) {
 
-					}
-				}
-			}
+
+		if (j >= nbCases) {
+			listeCombi.add(combiNb.clone());
+			return;
 		}
-		return combi;
+
+		for (int i = 0; i < nbChiffres; i++) {
+			combiNb[j] = (int) i;
+			genAllSolution((int) (j + 1));
+		}
+
 	}
 
 }

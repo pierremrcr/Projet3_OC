@@ -3,19 +3,27 @@ package com.projet3.jeuplusmoins;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class ModeDefenseurPlusMoins {
 
-	private int tab[] = new int[4];
-	Defense d;
+	
+	DefensePlusMoins d;
+	int nbEssais;
+	static final Logger logger = LogManager.getLogger();
+	
 
-	public ModeDefenseurPlusMoins() {
+	public ModeDefenseurPlusMoins(int nbEssais, int nbCases) {
+		
+		this.nbEssais = nbEssais;
+	    int solutionJoueur[] = new int[nbCases];
 
 		Scanner sc = new Scanner(System.in);
 		int nb;
 		String str;
 		do {
-			System.out.println("Veuillez entrer une combinaison de 4 chiffres");
+			System.out.println("Veuillez entrer une combinaison de " + nbCases + " chiffres");
 			str = sc.nextLine();
 			nb = str.length();
 
@@ -28,7 +36,7 @@ public class ModeDefenseurPlusMoins {
 				// Si la valeur num du caractère est comprise entre 47 et 58 (un chiffre entre 0
 				// et 9), on intègre cette valeur à notre tableau d'entiers
 				if (n > 47 && n < 58) {
-					tab[i] = Character.getNumericValue(c);
+					solutionJoueur[i] = Character.getNumericValue(c);
 				}
 				// Sinon on recommence la boucle do/while et on demande une nouvelle combinaison
 				else {
@@ -39,22 +47,30 @@ public class ModeDefenseurPlusMoins {
 		}
 		// Tant que la combinaison ne fait pas 4 chiffres, on reste dans la boucle et on
 		// redemande une nouvelle combinaison
-		while (nb != 4);
+		while (nb != nbCases);
 		// On crée un nouvel objet défense qui prend en paramètre la combinaison de l'utilisateur
-		d=new Defense(tab);
+		d=new DefensePlusMoins(solutionJoueur, nbCases);
 
 	}
 
 	public void jeu() {
 		boolean test = false;
+		int cpt = 0;
 		do {
 			//La méthode jeu renvoit un booléen donc si la méthode renvoit true 
 			//l'ordi à trouvé la solution donc le jeu s'arrête et on sort de la boucle
 			test=d.jeu();
+			cpt++;
 		}
-	while(test == false);
+	while(test == false && cpt != nbEssais);
 		System.out.println();
+		if(test==true) {
 		System.out.println("L'ordinateur a trouvé votre combinaison secrète ! ");
+		}
+		else {
+			System.out.println("L'ordinateur n'a pas trouvé votre combinaison secrète ! ");
+		}
+		System.out.println();
 	}
 
 }
