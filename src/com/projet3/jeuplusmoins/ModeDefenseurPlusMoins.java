@@ -8,16 +8,14 @@ import org.apache.logging.log4j.Logger;
 
 public class ModeDefenseurPlusMoins {
 
-	
 	DefensePlusMoins d;
 	int nbEssais;
 	static final Logger logger = LogManager.getLogger();
-	
 
 	public ModeDefenseurPlusMoins(int nbEssais, int nbCases) {
-		
+
 		this.nbEssais = nbEssais;
-	    int solutionJoueur[] = new int[nbCases];
+		int solutionJoueur[] = new int[nbCases];
 
 		Scanner sc = new Scanner(System.in);
 		int nb;
@@ -48,8 +46,9 @@ public class ModeDefenseurPlusMoins {
 		// Tant que la combinaison ne fait pas 4 chiffres, on reste dans la boucle et on
 		// redemande une nouvelle combinaison
 		while (nb != nbCases);
-		// On crée un nouvel objet défense qui prend en paramètre la combinaison de l'utilisateur
-		d=new DefensePlusMoins(solutionJoueur, nbCases);
+		// On crée un nouvel objet défense qui prend en paramètre la combinaison de
+		// l'utilisateur
+		d = new DefensePlusMoins(solutionJoueur, nbCases);
 
 	}
 
@@ -57,17 +56,15 @@ public class ModeDefenseurPlusMoins {
 		boolean test = false;
 		int cpt = 0;
 		do {
-			//La méthode jeu renvoit un booléen donc si la méthode renvoit true 
-			//l'ordi à trouvé la solution donc le jeu s'arrête et on sort de la boucle
-			test=d.jeu();
+			// La méthode jeu renvoit un booléen donc si la méthode renvoit true
+			// l'ordi à trouvé la solution donc le jeu s'arrête et on sort de la boucle
+			test = d.jeu();
 			cpt++;
-		}
-	while(test == false && cpt != nbEssais);
+		} while (test == false && cpt != nbEssais);
 		System.out.println();
-		if(test==true) {
-		System.out.println("L'ordinateur a trouvé votre combinaison secrète ! ");
-		}
-		else {
+		if (test == true) {
+			System.out.println("L'ordinateur a trouvé votre combinaison secrète ! ");
+		} else {
 			System.out.println("L'ordinateur n'a pas trouvé votre combinaison secrète ! ");
 		}
 		System.out.println();

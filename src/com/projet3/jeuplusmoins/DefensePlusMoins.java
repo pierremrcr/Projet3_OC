@@ -10,10 +10,9 @@ public class DefensePlusMoins {
 	private int nbCases;
 	private int[] solutionJoueur = new int[nbCases];
 	static final Logger logger = LogManager.getLogger();
-	Scanner sc = new Scanner(System.in);
 	private ArrayList<int[]> listeCombi = new ArrayList<>();
-	int nbChiffres = 10;
-	int[] combiNb;
+	private int nbChiffres = 10;
+	private int[] combiNb;
 
 	// Constructeur de la classe Defense prenant en pa ramètre la solution du joueur
 	public DefensePlusMoins(int[] solutionJoueur, int nbCases) {

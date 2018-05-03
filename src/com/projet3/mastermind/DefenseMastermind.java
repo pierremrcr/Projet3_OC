@@ -9,7 +9,6 @@ public class DefenseMastermind {
 
 	private int nbCases;
 	private int[] solutionJoueur = new int[nbCases];
-	Scanner sc = new Scanner(System.in);
 	private ArrayList<int[]> listeCombi = new ArrayList<>();
 	private int nbChiffres;
 	private int[] combiNb;
