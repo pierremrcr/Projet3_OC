@@ -28,7 +28,7 @@ public class Main {
 		int nbCases=0;
 		int nbEssais=0;
 		boolean modedev = false;
-		final Logger logger = LogManager.getLogger();
+	    Logger logger = LogManager.getLogger();
 		
 		
 		try {

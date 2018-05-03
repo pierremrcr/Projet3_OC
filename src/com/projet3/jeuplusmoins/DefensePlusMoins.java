@@ -102,7 +102,7 @@ public class DefensePlusMoins {
 	}
 
 	public boolean isSame(char[] a, char[] b) {
-		for (int i = 0; i < nbCases; i++) {
+		for (int i = 0; i < 3; i++) {
 			if (a[i] != b[i]) {
 				return false;
 			}
