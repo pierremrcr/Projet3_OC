@@ -26,6 +26,7 @@ public class DefensePlusMoins {
 
 	}
 
+	
 	public boolean jeu() {
 		System.out.println();
 		System.out.println("La solution du joueur est : ");
@@ -33,7 +34,8 @@ public class DefensePlusMoins {
 			System.out.print(solutionJoueur[i]);
 		}
 		System.out.println();
-		char[] gagnant = { '=', '=', '=', '=' };
+		
+		char[] gagnant = { '=', '=', '=', '=', '=', '=', '=', '='};
 
 		int[] combi = null;
 
@@ -60,10 +62,11 @@ public class DefensePlusMoins {
 		}
 
 		if (isSame(score, gagnant)) {
-			return true;
+		
+		return true;
+		
 		}
 
-		System.out.println();
 
 		ArrayList<int[]> listeCombiCopie = new ArrayList<>(listeCombi);
 
@@ -102,7 +105,7 @@ public class DefensePlusMoins {
 	}
 
 	public boolean isSame(char[] a, char[] b) {
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < nbCases; i++) {
 			if (a[i] != b[i]) {
 				return false;
 			}

@@ -20,18 +20,26 @@ public class AttaqueMastermind {
 	
 	public boolean jeu() {
 	
-		String str;
-		int nb;
+		String str = null;
+		int nb = 0;
 
-			do {
+	do {
+				
+			
 			System.out.println("Veuillez proposer une combinaison de " + nbCases + " chiffres :");
+			 
 		    str = sc.nextLine();
-		    nb = str.length();
-		    if (nb !=nbCases) {
-		    	System.out.println("Votre combinaison ne fait pas " +nbCases+ " chiffres");
+		    
+		   
+		    if (!str.matches("[0-9]+") || str.length() != nbCases ) {
+		    	System.out.println();
+		    	System.out.println("Votre combinaison doit exclusivement être composé de "+ nbCases +" chiffres de 0 à 9 ");
 		    	System.out.println();
 		    }
-			} while (nb != nbCases);
+		    
+		    
+			} while (!str.matches("[0-9]+") || str.length() != nbCases);
+			
 			int [] tab = new int[nbCases];
 			
 			// On caste la combinaison dans un entier puisque sc.nextLine() est un String

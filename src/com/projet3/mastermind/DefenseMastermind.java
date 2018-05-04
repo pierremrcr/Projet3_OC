@@ -36,7 +36,7 @@ public class DefenseMastermind {
 		}
 		System.out.println();
 		//Score que l'ordinateur doit obtenir pour avoir la bonne combinaison
-		int[] gagnant = { 4, 0 };
+		int[] gagnant = { nbCases, 0 };
 
 		int[] combi = null;
 		// On crée une arrayList pour stocker toutes les combinaisons
