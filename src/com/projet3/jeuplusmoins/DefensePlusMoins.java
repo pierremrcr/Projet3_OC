@@ -7,22 +7,22 @@ import java.util.Scanner;
 
 public class DefensePlusMoins {
 
-	private int nbCases;
-	private int[] solutionJoueur = new int[nbCases];
+	private byte nbCases;
+	private byte[] solutionJoueur = new byte[nbCases];
 	static final Logger logger = LogManager.getLogger();
-	private ArrayList<int[]> listeCombi = new ArrayList<>();
-	private int nbChiffres = 10;
-	private int[] combiNb;
+	private ArrayList<byte[]> listeCombi = new ArrayList<>();
+	private byte nbChiffres = 10;
+	private byte[] combiNb;
 
 	// Constructeur de la classe Defense prenant en pa ramètre la solution du joueur
-	public DefensePlusMoins(int[] solutionJoueur, int nbCases) {
+	public DefensePlusMoins(byte[] solutionJoueur, byte nbCases) {
 		this.nbCases = nbCases;
 		this.solutionJoueur = solutionJoueur;
-		this.combiNb = new int[nbCases];
+		this.combiNb = new byte[nbCases];
 
 		// On génère ici la liste de toutes les combinaisons possibles
 
-		genAllSolution(0);
+		genAllSolution((byte) 0);
 
 	}
 
@@ -37,7 +37,7 @@ public class DefensePlusMoins {
 		
 		char[] gagnant = { '=', '=', '=', '=', '=', '=', '=', '='};
 
-		int[] combi = null;
+		byte[] combi = null;
 
 		char[] score;
 
@@ -68,9 +68,9 @@ public class DefensePlusMoins {
 		}
 
 
-		ArrayList<int[]> listeCombiCopie = new ArrayList<>(listeCombi);
+		ArrayList<byte[]> listeCombiCopie = new ArrayList<>(listeCombi);
 
-		for (int[] combinaison : listeCombiCopie) {
+		for (byte[] combinaison : listeCombiCopie) {
 			// On va ensuite comparer chaque combinaison restante de la liste à la
 			// proposition de l'ordinateur et stocker le score dans la variable result
 			char[] result = compare(combi, combinaison);
@@ -88,7 +88,7 @@ public class DefensePlusMoins {
 	}
 
 	// Méthode qui va comparer la solution et la proposition de l'ordinateur
-	public char[] compare(int proposition[], int solution[]) {
+	public char[] compare(byte proposition[], byte solution[]) {
 		char[] ch = new char[nbCases];
 		for (int i = 0; i < nbCases; i++) {
 			if (solution[i] == proposition[i]) {
@@ -127,7 +127,7 @@ public class DefensePlusMoins {
 	 * } } } } return combi; }
 	 */
 
-	private void genAllSolution(int j) {
+	private void genAllSolution(byte j) {
 
 		if (j >= nbCases) {
 			listeCombi.add(combiNb.clone());
@@ -135,8 +135,8 @@ public class DefensePlusMoins {
 		}
 
 		for (int i = 0; i < nbChiffres; i++) {
-			combiNb[j] = (int) i;
-			genAllSolution((int) (j + 1));
+			combiNb[j] = (byte) i;
+			genAllSolution((byte) (j + 1));
 		}
 
 	}

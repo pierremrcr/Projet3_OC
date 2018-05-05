@@ -11,20 +11,20 @@ import java.util.Scanner;
 public class ModeChallengerPlusMoins {
 	
 	AttaquePlusMoins a;
-	int nbEssais;
+	byte nbEssais;
 	static final Logger logger = LogManager.getLogger();
 	
 	// Constructeur pour générer une combinaison de manière aléatoire
-	public ModeChallengerPlusMoins(int nbCases, int nbEssais, boolean modedev) {
+	public ModeChallengerPlusMoins(byte nbCases, byte nbEssais, boolean modedev) {
 		this.nbEssais = nbEssais;
-		int solutionOrdi[] = new int[nbCases];
+		byte solutionOrdi[] = new byte[nbCases];
 		if (modedev == true) {
 		System.out.print("Solution : ");
 		for (int i = 0; i < nbCases; i++) {
 			Random r = new Random();
 			// Chaque chiffre de la combinaison va recevoir une valeur aléatoire entre 0 et
 			// 9
-			System.out.print(solutionOrdi[i] = r.nextInt(9));
+			System.out.print(solutionOrdi[i] = (byte) r.nextInt(9));
 		}
 		System.out.println();
 		}

@@ -10,16 +10,16 @@ import java.util.Scanner;
 
 public class ModeDuelPlusMoins {
 	
-	int nbCases;
+	byte nbCases;
 	AttaquePlusMoins a;
 	DefensePlusMoins d;
 	static final Logger logger = LogManager.getLogger();
 	Scanner sc = new Scanner(System.in);
 	
-	public ModeDuelPlusMoins(int nbCases, boolean modedev) {
+	public ModeDuelPlusMoins(byte nbCases, boolean modedev) {
 		
-		int [] solutionJoueur= new int[nbCases];
-		int [] solutionOrdi= new int[nbCases];
+		byte [] solutionJoueur= new byte[nbCases];
+		byte [] solutionOrdi= new byte[nbCases];
 	
 		if (modedev == true) {
 			System.out.print("Solution : ");
@@ -27,7 +27,7 @@ public class ModeDuelPlusMoins {
 				Random r = new Random();
 				// Chaque chiffre de la combinaison va recevoir une valeur aléatoire entre 0 et
 				// 9
-				System.out.print(solutionOrdi[i] = r.nextInt(10));
+				System.out.print(solutionOrdi[i] = (byte) r.nextInt(10));
 			}
 			System.out.println();
 			}
@@ -54,26 +54,11 @@ public class ModeDuelPlusMoins {
 		
 
 		for (int i = 0; i < nbCases; i++) {
-			int cmb = Character.getNumericValue(str.charAt(i));
-//			char c;
-//			// On isole chaque élément de la chaine sous forme d'un caractère
-//			c = str.charAt(i);
-//			// On veut obtenir la valeur numérique de ce caractère
-//			int n = Character.valueOf(c);
-//			// Si la valeur num du caractère est comprise entre 47 et 58 (un chiffre entre 0
-//			// et 9), on intègre cette valeur à notre tableau d'entiers
-//			if (n > 47 && n < 58) {
+			byte cmb = (byte) Character.getNumericValue(str.charAt(i));
+//	
 			solutionJoueur[i] = cmb;
 			}
-			// Sinon on recommence la boucle do/while et on demande une nouvelle combinaison
-//			else {
-//				nb = 0;
-//				break;
-//			}
-		
 	
-	// Tant que la combinaison ne fait pas 4 chiffres, on reste dans la boucle et on
-	// redemande une nouvelle combinaison
 	
 	// On crée un nouvel objet défense qui prend en paramètre la combinaison de
 	// l'utilisateur

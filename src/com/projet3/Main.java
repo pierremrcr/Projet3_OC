@@ -156,7 +156,7 @@ public class Main {
 							System.out.println("Vous avez choisi le mode Challenger ");
 							System.out.println();
 
-							ModeChallengerPlusMoins chal = new ModeChallengerPlusMoins(nbCases, nbEssais, modedev);
+							ModeChallengerPlusMoins chal = new ModeChallengerPlusMoins((byte)nbCases,(byte) nbEssais, modedev);
 							chal.jeu();
 
 							do {
@@ -198,7 +198,7 @@ public class Main {
 							System.out.println("Vous avez choisi le mode Défenseur ");
 							System.out.println();
 
-							ModeDefenseurPlusMoins defplusmoins = new ModeDefenseurPlusMoins(nbEssais, nbCases);
+							ModeDefenseurPlusMoins defplusmoins = new ModeDefenseurPlusMoins((byte)nbEssais, (byte) nbCases);
 							defplusmoins.jeu();
 
 							do {
@@ -238,7 +238,7 @@ public class Main {
 							System.out.println("Vous avez choisi le mode Duel ");
 							System.out.println();
 
-							ModeDuelPlusMoins duelPlusMoins = new ModeDuelPlusMoins(nbCases, modedev);
+							ModeDuelPlusMoins duelPlusMoins = new ModeDuelPlusMoins((byte)nbCases, modedev);
 							duelPlusMoins.jeu();
 
 							do {
@@ -348,7 +348,7 @@ public class Main {
 							System.out.println();
 
 							
-							ModeChallengerMastermind chal = new ModeChallengerMastermind(nbCases, nbChiffres, modedev, nbEssais);
+							ModeChallengerMastermind chal = new ModeChallengerMastermind((byte)nbCases,(byte) nbChiffres, modedev, (byte)nbEssais);
 							chal.jeu();
 
 							do {
@@ -387,7 +387,7 @@ public class Main {
 							System.out.println("Vous avez choisi le mode Défenseur ");
 							System.out.println();
 
-							ModeDefenseurMastermind defMastermind = new ModeDefenseurMastermind(nbEssais,nbChiffres,nbCases);
+							ModeDefenseurMastermind defMastermind = new ModeDefenseurMastermind((byte)nbEssais,(byte)nbChiffres,(byte)nbCases);
 							defMastermind.jeu();
 
 							do {
@@ -427,7 +427,7 @@ public class Main {
 							System.out.println("Vous avez choisi le mode Duel ");
 							System.out.println();
 
-							ModeDuelMastermind duel = new ModeDuelMastermind(nbCases, nbChiffres, modedev);
+							ModeDuelMastermind duel = new ModeDuelMastermind((byte)nbCases,(byte) nbChiffres, modedev);
 							duel.jeu();
 
 							do {

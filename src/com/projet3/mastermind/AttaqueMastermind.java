@@ -6,46 +6,47 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class AttaqueMastermind {
-	int nbCases;
-	private int solutionOrdi[] = new int[nbCases];
-	int nbChiffres;
+	private byte nbCases;
+	private byte solutionOrdi[] = new byte[nbCases];
+	byte nbChiffres;
 	static final Logger logger = LogManager.getLogger();
 	Scanner sc = new Scanner(System.in);
 
-	public AttaqueMastermind(int solutionOrdi[], int nbCases) {
+	public AttaqueMastermind(byte solutionOrdi[], byte nbCases, byte nbChiffres) {
 		
 		this.solutionOrdi = solutionOrdi;
 		this.nbCases = nbCases;
+		this.nbChiffres = nbChiffres;
 	}
 	
 	public boolean jeu() {
 	
 		String str = null;
-		int nb = 0;
+
 
 	do {
 				
 			
-			System.out.println("Veuillez proposer une combinaison de " + nbCases + " chiffres :");
+			System.out.println("Veuillez proposer une combinaison de " + nbCases + " chiffres entre 0 et "+nbChiffres);
 			 
 		    str = sc.nextLine();
 		    
 		   
-		    if (!str.matches("[0-9]+") || str.length() != nbCases ) {
+		    if (!str.matches("[0-"+nbChiffres+"]+") || str.length() != nbCases ) {
 		    	System.out.println();
-		    	System.out.println("Votre combinaison doit exclusivement être composé de "+ nbCases +" chiffres de 0 à 9 ");
+		    	System.out.println("Votre combinaison doit exclusivement être composé de "+ nbCases +" chiffres de 0 à "+nbChiffres);
 		    	System.out.println();
 		    }
 		    
 		    
-			} while (!str.matches("[0-9]+") || str.length() != nbCases);
+			} while (!str.matches("[0-"+nbChiffres+"]+") || str.length() != nbCases);
 			
-			int [] tab = new int[nbCases];
+			byte [] tab = new byte[nbCases];
 			
 			// On caste la combinaison dans un entier puisque sc.nextLine() est un String
 			for (int i = 0; i < nbCases; i++) {
 				// Chaque caractère de la proposition est casté pour avoir un int
-				int cmb = Character.getNumericValue(str.charAt(i));
+				byte cmb = (byte) Character.getNumericValue(str.charAt(i));
 				tab[i] = cmb;
 			}
 					
@@ -60,7 +61,7 @@ public class AttaqueMastermind {
 
 
 
-	boolean compare(int[]proposition) {
+	boolean compare(byte[]proposition) {
 		// boolean combi = true;
 		int mal = 0, bien = 0;
 		// Première boucle parcourant la combinaison à deviner
@@ -70,7 +71,7 @@ public class AttaqueMastermind {
 			// Deuxième boucle parcourant la proposition
 			for (int j = 0; j < nbCases; j++) {
 				
-				int cmb = proposition[j];
+				byte cmb = proposition[j];
 				// Comparaison de la proposition par rapport à la combinaison
 				if (cmb == solutionOrdi[i]) {
 					if (i == j) {

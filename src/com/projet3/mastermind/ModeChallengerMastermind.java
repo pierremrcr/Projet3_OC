@@ -12,29 +12,29 @@ import com.projet3.jeuplusmoins.DefensePlusMoins;
 
 public class ModeChallengerMastermind {
 	
-	int nbEssais;
+	byte nbEssais;
 	AttaqueMastermind a;
 	static final Logger logger = LogManager.getLogger();
 	
 
 	// Constructeur pour générer une combinaison de maniière aléatoire
-	public ModeChallengerMastermind(int nbCases, int nbChiffres, boolean modedev, int nbEssais) {
+	public ModeChallengerMastermind(byte nbCases, byte nbChiffres, boolean modedev, byte nbEssais) {
 		this.nbEssais = nbEssais;
-	    int solutionOrdi[] = new int[nbCases];
+	    byte solutionOrdi[] = new byte[nbCases];
 	    
 		if (modedev == true) {
 			System.out.print("Solution : ");
 			for (int i = 0; i < nbCases; i++) {
 				Random r = new Random();
 				// Chaque chiffre de la combinaison va recevoir une valeur aléatoire entre 0 et
-				// 9
-				System.out.print(solutionOrdi[i] = r.nextInt(nbChiffres));
+				// nbChiffres
+				System.out.print(solutionOrdi[i] = (byte) r.nextInt(nbChiffres+1));
 			}
 			System.out.println();
 			}
 		System.out.println();
 		// On crée un objet de la classe Attaque qui prend en paramètre la combinaison de l'ordi à deviner
-		a = new AttaqueMastermind(solutionOrdi, nbCases);
+		a = new AttaqueMastermind(solutionOrdi, nbCases, nbChiffres);
 		
 	}
 

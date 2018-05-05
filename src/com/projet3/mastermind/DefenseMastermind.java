@@ -7,23 +7,23 @@ import java.util.Scanner;
 
 public class DefenseMastermind {
 
-	private int nbCases;
-	private int[] solutionJoueur = new int[nbCases];
-	private ArrayList<int[]> listeCombi = new ArrayList<>();
-	private int nbChiffres;
-	private int[] combiNb;
+	private byte nbCases;
+	private byte[] solutionJoueur = new byte[nbCases];
+	private ArrayList<byte[]> listeCombi = new ArrayList<>();
+	private byte nbChiffres;
+	private byte[] combiNb;
 	static final Logger logger = LogManager.getLogger();
 	
 
-	public DefenseMastermind(int[] solutionJoueur, int nbCases, int nbChiffres) {
+	public DefenseMastermind(byte[] solutionJoueur, byte nbCases, byte nbChiffres) {
 		this.solutionJoueur = solutionJoueur;
 		this.nbCases = nbCases;
-		this.combiNb = new int[nbCases];
+		this.combiNb = new byte[nbCases];
 		this.nbChiffres = nbChiffres;
 		// On utilise la méthode generate() pour générer toutes les combinaisons et on
 	    // les stock dans la arraylist
 		//listeCombi = generate();
-		genAllSolution(0);
+		genAllSolution((byte) 0);
 		
 
 	}
@@ -36,13 +36,13 @@ public class DefenseMastermind {
 		}
 		System.out.println();
 		//Score que l'ordinateur doit obtenir pour avoir la bonne combinaison
-		int[] gagnant = { nbCases, 0 };
+		byte[] gagnant = { nbCases, 0 };
 
-		int[] combi = null;
+		byte[] combi = null;
 		// On crée une arrayList pour stocker toutes les combinaisons
 
 
-		int[] score = null;
+		byte[] score = null;
 
 	
 		int indexAlea = (int) (Math.random() * (listeCombi.size()));
@@ -73,12 +73,12 @@ public class DefenseMastermind {
 		System.out.println();
 
 
-		ArrayList<int[]> listeCombiCopie = new ArrayList<>(listeCombi);
+		ArrayList<byte[]> listeCombiCopie = new ArrayList<>(listeCombi);
 
-		for (int[] combinaison : listeCombiCopie) {
+		for (byte[] combinaison : listeCombiCopie) {
 			// On va ensuite comparer chaque combinaison restante de la liste à la
 			// proposition de l'ordinateur et stocker le score dans la variable result
-			int[] result = compare(combi, combinaison);
+			byte[] result = compare(combi, combinaison);
 			// Si le score obtenu est différent de ce que nous avions obtenu précédemment on
 			// enlève cette combinaison de la liste
 			if (!isSame(result, score)) {
@@ -93,11 +93,11 @@ public class DefenseMastermind {
 	}
 
 	// Méthode qui va comparer la solution et la proposition de l'ordinateur
-	public int[] compare(int proposition[], int solution[]) {
+	public byte[] compare(byte proposition[], byte solution[]) {
 
-		int[] score = new int[2];
-		int bienPlace = 0;
-		int malPlace = 0;
+		byte[] score = new byte[2];
+		byte bienPlace = 0;
+		byte malPlace = 0;
 		for (int i = 0; i < nbCases; i++) {
 
 			// Deuxième boucle parcourant la proposition
@@ -123,7 +123,7 @@ public class DefenseMastermind {
 	}
 //Méthode pour comparer le score de la proposition de l'ordinateur et la solution obtenu
 // grâce à la méthode compare()
-	public boolean isSame(int[] a, int[] b) {
+	public boolean isSame(byte[] a, byte[] b) {
 		for (int i = 0; i < 2; i++) {
 			if (a[i] != b[i]) {
 				return false;
@@ -132,29 +132,9 @@ public class DefenseMastermind {
 		return true;
 	}
 
-	// Méthode permettant de générer une arrayList comportant toutes les
-	// combinaisons possibles
-//	public ArrayList<int[]> generate() {
-//		// on crée une ArrayList qui va comporter toutes les combinaisons
-//		ArrayList<int[]> combi = new ArrayList<>();
-//		// On crée 4 boucles afin de générer toutes les combinaisons de 4 chiffres
-//		// allant de 0 à 9
-//		for (int i = 0; i <= 9; i++) {
-//			for (int j = 0; j <= 9; j++) {
-//				for (int k = 0; k <= 9; k++) {
-//					for (int l = 0; l <= 9; l++) {
-//						int tab[] = { i, j, k, l };
-//						// Chaque combinaison généré par les boucles est stocké dans la ArrayList combi
-//						combi.add(tab);
-//
-//					}
-//				}
-//			}
-//		}
-//		return combi;
-//	}
+
 	
-	private void genAllSolution(int j) {
+	private void genAllSolution(byte j) {
 
 
 		if (j >= nbCases) {
@@ -162,9 +142,9 @@ public class DefenseMastermind {
 			return;
 		}
 
-		for (int i = 0; i < nbChiffres; i++) {
-			combiNb[j] = (int) i;
-			genAllSolution((int) (j + 1));
+		for (int i = 0; i <= nbChiffres; i++) {
+			combiNb[j] = (byte) i;
+			genAllSolution((byte) (j + 1));
 		}
 
 	}

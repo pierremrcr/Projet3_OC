@@ -10,56 +10,37 @@ import com.projet3.jeuplusmoins.DefensePlusMoins;
 public class ModeDefenseurMastermind {
 
 	DefenseMastermind d;
-	int nbEssais;
-	int nbChiffres;
+	byte nbEssais;
+	byte nbChiffres;
 	static final Logger logger = LogManager.getLogger();
 
-	public ModeDefenseurMastermind(int nbEssais, int nbChiffres, int nbCases) {
+	public ModeDefenseurMastermind(byte nbEssais, byte nbChiffres, byte nbCases) {
 		this.nbEssais = nbEssais;
 		this.nbChiffres = nbChiffres;
-		int solutionJoueur[] = new int[nbCases];
+		byte solutionJoueur[] = new byte[nbCases];
 
 		Scanner sc = new Scanner(System.in);
-		int nb;
 		String str;
 		do {
 
-			System.out.println("Veuillez entrer une combinaison de " + nbCases + " chiffres");
+			System.out.println("Veuillez entrer une combinaison de " + nbCases + " chiffres de 0 à "+nbChiffres);
 
 			str = sc.nextLine();
 
-			if (!str.matches("[0-9]+") || str.length() != nbCases) {
+			if (!str.matches("[0-"+nbChiffres+"]+") || str.length() != nbCases) {
 				System.out.println();
-				System.out.println("Votre combinaison doit exclusivement être composé de " + nbCases + " chiffres de 0 à 9 ");
+				System.out.println("Votre combinaison doit exclusivement être composé de " + nbCases + " chiffres de 0 à "+nbChiffres);
 				System.out.println();
 			}
 
-		} while (!str.matches("[0-9]+") || str.length() != nbCases);
+		} while (!str.matches("[0-"+nbChiffres+"]+") || str.length() != nbCases);
 
 		for (int i = 0; i < nbCases; i++) {
-			int cmb = Character.getNumericValue(str.charAt(i));
-			// char c;
-			// // On isole chaque élément de la chaine sous forme d'un caractère
-			// c = str.charAt(i);
-			// // On veut obtenir la valeur numérique de ce caractère
-			// int n = Character.valueOf(c);
-			// // Si la valeur num du caractère est comprise entre 47 et 58 (un chiffre
-			// entre 0
-			// // et 9), on intègre cette valeur à notre tableau d'entiers
-			// if (n > 47 && n < 58) {
+			byte cmb = (byte) Character.getNumericValue(str.charAt(i));
+		
 			solutionJoueur[i] = cmb;
 		}
-		// Sinon on recommence la boucle do/while et on demande une nouvelle combinaison
-		// else {
-		// nb = 0;
-		// break;
-		// }
-
-		// Tant que la combinaison ne fait pas 4 chiffres, on reste dans la boucle et on
-		// redemande une nouvelle combinaison
-
-		// On crée un nouvel objet défense qui prend en paramètre la combinaison de
-		// l'utilisateur
+	
 		d = new DefenseMastermind(solutionJoueur, nbCases, nbChiffres);
 
 	}
@@ -75,8 +56,10 @@ public class ModeDefenseurMastermind {
 		} while (test == false && cpt != nbEssais);
 		System.out.println();
 		if (test == true) {
+			System.out.println();
 			System.out.println("L'ordinateur a trouvé votre combinaison secrète ! ");
 		} else {
+			System.out.println();
 			System.out.println("L'ordinateur n'a pas trouvé votre combinaison secrète ! ");
 		}
 		System.out.println();
