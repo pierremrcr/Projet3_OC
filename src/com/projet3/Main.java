@@ -2,7 +2,6 @@ package com.projet3;
 
 import java.io.FileInputStream;
 
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -16,21 +15,24 @@ import com.projet3.mastermind.ModeChallengerMastermind;
 import com.projet3.mastermind.ModeDefenseurMastermind;
 import com.projet3.mastermind.ModeDuelMastermind;
 
-
 public class Main {
 
 	public static void main(String[] args) {
-		
-		
+
 		Properties prop = new Properties();
 		InputStream input = null;
-		int nbChiffres=0;
-		int nbCases=0;
-		int nbEssais=0;
+		int nbChiffres = 0;
+		int nbCases = 0;
+		int nbEssais = 0;
 		boolean modedev = false;
-	    Logger logger = LogManager.getLogger();
-		
-		
+		Logger logger = LogManager.getLogger();
+
+		if ((args.length > 0 && args[0].equals("dev")) || modedev) {
+			modedev = true;
+		} else {
+			modedev = false;
+		}
+
 		try {
 
 			input = new FileInputStream("config.properties");
@@ -42,8 +44,6 @@ public class Main {
 			nbCases = Integer.valueOf(prop.getProperty("nbCases"));
 			nbEssais = Integer.valueOf(prop.getProperty("nbEssais"));
 			modedev = Boolean.parseBoolean((prop.getProperty("modedev")));
-			
-
 
 		} catch (IOException ex) {
 			ex.printStackTrace();
@@ -56,6 +56,7 @@ public class Main {
 				}
 			}
 		}
+
 		Scanner sc = new Scanner(System.in);
 		Scanner sc1 = new Scanner(System.in);
 		int jeu = 0;
@@ -77,19 +78,20 @@ public class Main {
 		System.out.println();
 
 		do {
-         
+
 			System.out.print("Veuillez choisir un jeu : ");
 			if (modedev == true) {
-			System.out.println("(Mode Développeur activé)");
+				System.out.println("(Mode Développeur activé)");
 			}
 			System.out.println();
 			System.out.println("1 pour le jeu du +/-");
 			System.out.println("2 pour le jeu du Mastermind");
+			System.out.println("3 pour quitter");
 			System.out.println();
 			System.out.print("Votre choix : ");
-			
+
 			if (!sc.hasNextInt()) {
-				
+
 				System.out.println();
 				System.out.println("Vous n'avez pas sélectionné la bonne touche.");
 				System.out.println("Veuillez choisir parmi les propositions :");
@@ -99,16 +101,12 @@ public class Main {
 
 				continue;
 			}
-			
-		
+
 			jeu = sc.nextInt();
-			
-			
-			
+
 			logger.trace("l'utilisateur a choisi le jeu " + jeu);
 
 			System.out.println();
-            
 
 			if (jeu == 1) {
 				System.out.println("Vous avez choisi le jeu du +/-");
@@ -116,7 +114,12 @@ public class Main {
 			} else if (jeu == 2) {
 				System.out.println("Vous avez choisi le jeu du Mastermind");
 				System.out.println();
-			} else {
+			} else if (jeu == 3) {
+				System.out.println("A bientôt");
+				System.out.println();
+			}
+
+			else {
 				System.out.println("Aucun jeu sélectionné. Veuillez sélectionner un jeu");
 				System.out.println();
 			}
@@ -131,9 +134,9 @@ public class Main {
 					System.out.println("3 pour le mode Duel");
 					System.out.println();
 					System.out.print("Votre choix : ");
-					
+
 					if (!sc.hasNextInt()) {
-						
+
 						System.out.println();
 						System.out.println("Vous n'avez pas sélectionné la bonne touche.");
 						System.out.println("Veuillez choisir parmi les propositions :");
@@ -145,7 +148,7 @@ public class Main {
 					}
 
 					modePlusmoins = sc.nextInt();
-					
+
 					logger.trace("l'utilisateur a choisi le mode " + modePlusmoins);
 
 					switch (modePlusmoins) {
@@ -156,16 +159,17 @@ public class Main {
 							System.out.println("Vous avez choisi le mode Challenger ");
 							System.out.println();
 
-							ModeChallengerPlusMoins chal = new ModeChallengerPlusMoins((byte)nbCases,(byte) nbEssais, modedev);
+							ModeChallengerPlusMoins chal = new ModeChallengerPlusMoins((byte) nbCases, (byte) nbEssais,
+									modedev);
 							chal.jeu();
 
 							do {
 								System.out.println("Voulez vous rejouer ? 1 : Oui 2 : Non");
 								System.out.println();
 								System.out.print("Votre choix : ");
-								
+
 								if (!sc.hasNextInt()) {
-									
+
 									System.out.println();
 									System.out.println("Vous n'avez pas sélectionné la bonne touche.");
 									System.out.println("Veuillez choisir parmi les propositions :");
@@ -175,10 +179,9 @@ public class Main {
 
 									continue;
 								}
-								
-								
+
 								answerChallenger = sc.nextInt();
-								
+
 								logger.trace("l'utilisateur a choisi la réponse" + answerChallenger);
 								if (answerChallenger != 1 && answerChallenger != 2) {
 									System.out.println();
@@ -198,16 +201,17 @@ public class Main {
 							System.out.println("Vous avez choisi le mode Défenseur ");
 							System.out.println();
 
-							ModeDefenseurPlusMoins defplusmoins = new ModeDefenseurPlusMoins((byte)nbEssais, (byte) nbCases);
+							ModeDefenseurPlusMoins defplusmoins = new ModeDefenseurPlusMoins((byte) nbEssais,
+									(byte) nbCases);
 							defplusmoins.jeu();
 
 							do {
 								System.out.println("Voulez vous rejouer ? 1 : Oui 2 : Non");
 								System.out.println();
 								System.out.print("Votre choix : ");
-								
+
 								if (!sc.hasNextInt()) {
-									
+
 									System.out.println();
 									System.out.println("Vous n'avez pas sélectionné la bonne touche.");
 									System.out.println("Veuillez choisir parmi les propositions :");
@@ -238,16 +242,16 @@ public class Main {
 							System.out.println("Vous avez choisi le mode Duel ");
 							System.out.println();
 
-							ModeDuelPlusMoins duelPlusMoins = new ModeDuelPlusMoins((byte)nbCases, modedev);
+							ModeDuelPlusMoins duelPlusMoins = new ModeDuelPlusMoins((byte) nbCases, modedev);
 							duelPlusMoins.jeu();
 
 							do {
 								System.out.println("Voulez vous rejouer ? 1 : Oui 2 : Non");
 								System.out.println();
 								System.out.print("Votre choix : ");
-								
+
 								if (!sc.hasNextInt()) {
-									
+
 									System.out.println();
 									System.out.println("Vous n'avez pas sélectionné la bonne touche.");
 									System.out.println("Veuillez choisir parmi les propositions :");
@@ -257,7 +261,7 @@ public class Main {
 
 									continue;
 								}
-								
+
 								answerDuel = sc.nextInt();
 								logger.trace("l'utilisateur a choisi la réponse" + answerDuel);
 								if (answerDuel != 1 && answerDuel != 2) {
@@ -289,9 +293,9 @@ public class Main {
 					System.out.println("Voulez-vous jouer à un autre jeu ? 1 : Oui 2 : Non");
 					System.out.println();
 					System.out.print("Votre choix : ");
-					
+
 					if (!sc.hasNextInt()) {
-						
+
 						System.out.println();
 						System.out.println("Vous n'avez pas sélectionné la bonne touche.");
 						System.out.println("Veuillez choisir parmi les propositions :");
@@ -301,7 +305,7 @@ public class Main {
 
 						continue;
 					}
-					
+
 					answer2 = sc.nextInt();
 					logger.trace("l'utilisateur a choisi la réponse" + answer2);
 					System.out.println();
@@ -322,9 +326,9 @@ public class Main {
 					System.out.println("3 pour le mode Duel");
 					System.out.println();
 					System.out.print("Votre choix : ");
-					
+
 					if (!sc.hasNextInt()) {
-						
+
 						System.out.println();
 						System.out.println("Vous n'avez pas sélectionné la bonne touche.");
 						System.out.println("Veuillez choisir parmi les propositions :");
@@ -334,7 +338,6 @@ public class Main {
 
 						continue;
 					}
-					
 
 					modeMastermind = sc.nextInt();
 					logger.trace("l'utilisateur a choisi le mode" + modeMastermind);
@@ -347,17 +350,17 @@ public class Main {
 							System.out.println("Vous avez choisi le mode Challenger ");
 							System.out.println();
 
-							
-							ModeChallengerMastermind chal = new ModeChallengerMastermind((byte)nbCases,(byte) nbChiffres, modedev, (byte)nbEssais);
+							ModeChallengerMastermind chal = new ModeChallengerMastermind((byte) nbCases,
+									(byte) nbChiffres, modedev, (byte) nbEssais);
 							chal.jeu();
 
 							do {
 								System.out.println("Voulez vous rejouer ? 1 : Oui 2 : Non");
 								System.out.println();
 								System.out.print("Votre choix : ");
-								
+
 								if (!sc.hasNextInt()) {
-									
+
 									System.out.println();
 									System.out.println("Vous n'avez pas sélectionné la bonne touche.");
 									System.out.println("Veuillez choisir parmi les propositions :");
@@ -367,7 +370,7 @@ public class Main {
 
 									continue;
 								}
-								
+
 								answerChallenger = sc.nextInt();
 								logger.trace("l'utilisateur a choisi la réponse" + answerChallenger);
 								if (answerChallenger != 1 && answerChallenger != 2) {
@@ -387,16 +390,17 @@ public class Main {
 							System.out.println("Vous avez choisi le mode Défenseur ");
 							System.out.println();
 
-							ModeDefenseurMastermind defMastermind = new ModeDefenseurMastermind((byte)nbEssais,(byte)nbChiffres,(byte)nbCases);
+							ModeDefenseurMastermind defMastermind = new ModeDefenseurMastermind((byte) nbEssais,
+									(byte) nbChiffres, (byte) nbCases);
 							defMastermind.jeu();
 
 							do {
 								System.out.println("Voulez vous rejouer ? 1 : Oui 2 : Non");
 								System.out.println();
 								System.out.print("Votre choix : ");
-								
+
 								if (!sc.hasNextInt()) {
-									
+
 									System.out.println();
 									System.out.println("Vous n'avez pas sélectionné la bonne touche.");
 									System.out.println("Veuillez choisir parmi les propositions :");
@@ -406,7 +410,7 @@ public class Main {
 
 									continue;
 								}
-								
+
 								answerDefenseur = sc.nextInt();
 								logger.trace("l'utilisateur a choisi la réponse" + answerDefenseur);
 								if (answerDefenseur != 1 && answerDefenseur != 2) {
@@ -427,16 +431,17 @@ public class Main {
 							System.out.println("Vous avez choisi le mode Duel ");
 							System.out.println();
 
-							ModeDuelMastermind duel = new ModeDuelMastermind((byte)nbCases,(byte) nbChiffres, modedev);
+							ModeDuelMastermind duel = new ModeDuelMastermind((byte) nbCases, (byte) nbChiffres,
+									modedev);
 							duel.jeu();
 
 							do {
 								System.out.println("Voulez vous rejouer ? 1 : Oui 2 : Non");
 								System.out.println();
 								System.out.print("Votre choix : ");
-								
+
 								if (!sc.hasNextInt()) {
-									
+
 									System.out.println();
 									System.out.println("Vous n'avez pas sélectionné la bonne touche.");
 									System.out.println("Veuillez choisir parmi les propositions :");
@@ -446,7 +451,7 @@ public class Main {
 
 									continue;
 								}
-								
+
 								answerDuel = sc.nextInt();
 								logger.trace("l'utilisateur a choisi la réponse" + answerDuel);
 								if (answerDuel != 1 && answerDuel != 2) {
@@ -475,9 +480,9 @@ public class Main {
 					System.out.println("Voulez-vous jouer à un autre jeu ? 1 : Oui 2 : Non");
 					System.out.println();
 					System.out.print("Votre choix : ");
-					
+
 					if (!sc.hasNextInt()) {
-						
+
 						System.out.println();
 						System.out.println("Vous n'avez pas sélectionné la bonne touche.");
 						System.out.println("Veuillez choisir parmi les propositions :");
@@ -487,7 +492,7 @@ public class Main {
 
 						continue;
 					}
-					
+
 					answer2 = sc.nextInt();
 					logger.trace("l'utilisateur a choisi la réponse" + answer2);
 					System.out.println();
@@ -498,8 +503,7 @@ public class Main {
 
 			}
 
-		} while (jeu != 1 && jeu != 2 || answer2 == 1);
+		} while (jeu != 1 && jeu != 2 && jeu != 3 || answer2 == 1);
 	}
 
 }
-

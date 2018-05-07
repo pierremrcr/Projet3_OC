@@ -26,16 +26,17 @@ public class ModeDuelMastermind {
 		byte [] solutionOrdi= new byte[nbCases];
 	
 	
+		for (int i = 0; i < nbCases; i++) {
+			Random r = new Random();
+			solutionOrdi[i] = (byte) r.nextInt(nbChiffres+1);
+		}
 		if (modedev == true) {
 			System.out.print("Solution : ");
 			for (int i = 0; i < nbCases; i++) {
-				Random r = new Random();
-				// Chaque chiffre de la combinaison va recevoir une valeur aléatoire entre 0 et
-				// 9
-				System.out.print(solutionOrdi[i] = (byte) r.nextInt(nbChiffres+1));
+				System.out.print(solutionOrdi[i]);
 			}
 			System.out.println();
-			}
+		}
 	
 	Scanner sc = new Scanner(System.in);
 

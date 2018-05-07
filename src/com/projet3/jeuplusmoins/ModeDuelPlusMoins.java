@@ -15,25 +15,30 @@ public class ModeDuelPlusMoins {
 	DefensePlusMoins d;
 	static final Logger logger = LogManager.getLogger();
 	Scanner sc = new Scanner(System.in);
+	byte[] solutionJoueur;
+	byte[] solutionOrdi;
+	
 	
 	public ModeDuelPlusMoins(byte nbCases, boolean modedev) {
 		
-		byte [] solutionJoueur= new byte[nbCases];
-		byte [] solutionOrdi= new byte[nbCases];
+		solutionJoueur= new byte[nbCases];
+	    solutionOrdi= new byte[nbCases];
 	
+		for (int i = 0; i < nbCases; i++) {
+			Random r = new Random();
+			solutionOrdi[i] = (byte) r.nextInt(10);
+		}
 		if (modedev == true) {
 			System.out.print("Solution : ");
 			for (int i = 0; i < nbCases; i++) {
-				Random r = new Random();
-				// Chaque chiffre de la combinaison va recevoir une valeur aléatoire entre 0 et
-				// 9
-				System.out.print(solutionOrdi[i] = (byte) r.nextInt(10));
+				System.out.print(solutionOrdi[i]);
 			}
 			System.out.println();
-			}
+		}
+			
 	
 	
-	int nb = 0;
+	
 	String str = null;
 	
 	do {
@@ -85,6 +90,10 @@ public class ModeDuelPlusMoins {
 		else if(d.jeu()){
 			System.out.println();
 			System.out.println("L'ordinateur a trouvé avant vous !");
+			System.out.println("La solution de l'ordinateur était ");
+			for (int i = 0; i<nbCases; i++) {
+				System.out.println(solutionOrdi[i]);
+			}
 			gagnant++;
 		}
 		}
