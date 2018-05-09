@@ -26,7 +26,6 @@ public class DefensePlusMoins {
 
 	}
 
-	
 	public boolean jeu() {
 		System.out.println();
 		System.out.println("La solution du joueur est : ");
@@ -34,8 +33,8 @@ public class DefensePlusMoins {
 			System.out.print(solutionJoueur[i]);
 		}
 		System.out.println();
-		
-		char[] gagnant = { '=', '=', '=', '=', '=', '=', '=', '='};
+
+		char[] gagnant = { '=', '=', '=', '=', '=', '=', '=', '=' };
 
 		byte[] combi = null;
 
@@ -54,19 +53,18 @@ public class DefensePlusMoins {
 
 		score = compare(combi, solutionJoueur);
 		System.out.println();
-		
+
 		System.out.println("score : ");
-		
+
 		for (int i = 0; i < nbCases; i++) {
 			System.out.print(score[i]);
 		}
 
 		if (isSame(score, gagnant)) {
-		
-		return true;
-		
-		}
 
+			return true;
+
+		}
 
 		ArrayList<byte[]> listeCombiCopie = new ArrayList<>(listeCombi);
 
@@ -134,7 +132,7 @@ public class DefensePlusMoins {
 			return;
 		}
 
-		for (int i = 0; i < nbChiffres; i++) {
+		for (int i = 0; i <= nbChiffres; i++) {
 			combiNb[j] = (byte) i;
 			genAllSolution((byte) (j + 1));
 		}

@@ -1,46 +1,51 @@
 package com.projet3.mastermind;
 
-import java.util.ArrayList;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import java.util.Scanner;
 
-import com.projet3.jeuplusmoins.DefensePlusMoins;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-public class ModeDefenseurMastermind {
+import com.projet3.Mode;
+
+public class ModeDefenseurMastermind implements Mode {
 
 	DefenseMastermind d;
 	byte nbEssais;
 	byte nbChiffres;
+	byte nbCases;
 	static final Logger logger = LogManager.getLogger();
 
-	public ModeDefenseurMastermind(byte nbEssais, byte nbChiffres, byte nbCases) {
+	public ModeDefenseurMastermind(byte nbCases, byte nbEssais, byte nbChiffres ) {
 		this.nbEssais = nbEssais;
 		this.nbChiffres = nbChiffres;
+		this.nbCases = nbCases;
 		byte solutionJoueur[] = new byte[nbCases];
 
 		Scanner sc = new Scanner(System.in);
 		String str;
 		do {
 
-			System.out.println("Veuillez entrer une combinaison de " + nbCases + " chiffres de 0 à "+nbChiffres);
+			System.out.println("Veuillez entrer une combinaison de " + nbCases + " chiffres de 0 à " + nbChiffres);
 
 			str = sc.nextLine();
 
-			if (!str.matches("[0-"+nbChiffres+"]+") || str.length() != nbCases) {
+			if (!str.matches("[0-" + nbChiffres + "]+") || str.length() != nbCases) {
 				System.out.println();
-				System.out.println("Votre combinaison doit exclusivement être composé de " + nbCases + " chiffres de 0 à "+nbChiffres);
+				System.out.println("Votre combinaison doit exclusivement être composé de " + nbCases
+						+ " chiffres de 0 à " + nbChiffres);
+				logger.warn(
+						"Soit l'utilisateur n'a pas respecté le nb de cases ou le nb de chiffres soit il n'a pas renseigné de chiffres");
 				System.out.println();
 			}
 
-		} while (!str.matches("[0-"+nbChiffres+"]+") || str.length() != nbCases);
+		} while (!str.matches("[0-" + nbChiffres + "]+") || str.length() != nbCases);
 
 		for (int i = 0; i < nbCases; i++) {
 			byte cmb = (byte) Character.getNumericValue(str.charAt(i));
-		
+
 			solutionJoueur[i] = cmb;
 		}
-	
+
 		d = new DefenseMastermind(solutionJoueur, nbCases, nbChiffres);
 
 	}

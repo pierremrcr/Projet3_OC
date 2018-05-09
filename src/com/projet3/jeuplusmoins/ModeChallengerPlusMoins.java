@@ -1,14 +1,14 @@
 package com.projet3.jeuplusmoins;
 
-import java.io.FileInputStream;
+
+import java.util.Random;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import java.io.InputStream;
-import java.util.Properties;
-import java.util.Random;
-import java.util.Scanner;
 
-public class ModeChallengerPlusMoins {
+import com.projet3.Mode;
+
+public class ModeChallengerPlusMoins implements Mode {
 
 	AttaquePlusMoins a;
 	byte nbEssais;
@@ -26,7 +26,7 @@ public class ModeChallengerPlusMoins {
 		// 9
 		for (int i = 0; i < nbCases; i++) {
 			Random r = new Random();
-			solutionOrdi[i] = (byte) r.nextInt(9);
+			solutionOrdi[i] = (byte) r.nextInt(10);
 		}
 		if (modedev == true) {
 			System.out.print("Solution : ");

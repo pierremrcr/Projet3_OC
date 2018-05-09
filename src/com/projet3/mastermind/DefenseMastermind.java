@@ -13,7 +13,6 @@ public class DefenseMastermind {
 	private byte nbChiffres;
 	private byte[] combiNb;
 	static final Logger logger = LogManager.getLogger();
-	
 
 	public DefenseMastermind(byte[] solutionJoueur, byte nbCases, byte nbChiffres) {
 		this.solutionJoueur = solutionJoueur;
@@ -21,10 +20,9 @@ public class DefenseMastermind {
 		this.combiNb = new byte[nbCases];
 		this.nbChiffres = nbChiffres;
 		// On utilise la méthode generate() pour générer toutes les combinaisons et on
-	    // les stock dans la arraylist
-		//listeCombi = generate();
+		// les stock dans la arraylist
+		// listeCombi = generate();
 		genAllSolution((byte) 0);
-		
 
 	}
 
@@ -35,43 +33,41 @@ public class DefenseMastermind {
 			System.out.print(solutionJoueur[i]);
 		}
 		System.out.println();
-		//Score que l'ordinateur doit obtenir pour avoir la bonne combinaison
+		// Score que l'ordinateur doit obtenir pour avoir la bonne combinaison
 		byte[] gagnant = { nbCases, 0 };
 
 		byte[] combi = null;
 		// On crée une arrayList pour stocker toutes les combinaisons
 
-
 		byte[] score = null;
 
-	
 		int indexAlea = (int) (Math.random() * (listeCombi.size()));
 		// on utilise cet indice aléatoire pour piocher une des combinaisons de la liste
 		// et la stocker dans la variable combi
 		combi = listeCombi.get(indexAlea);
-		
+
 		System.out.println("L'ordinateur propose : ");
 		for (int i = 0; i < nbCases; i++) {
 			System.out.print(combi[i]);
 		}
-		
+
 		// On utilise la méthode compare() pour comparer la solution et la proposition
 		// de l'ordi et lui attribuer un score
 		score = compare(combi, solutionJoueur);
 		System.out.println();
 		System.out.println("score : ");
-		
+
 		System.out.println("Présents : " + score[1]);
 		System.out.println("Bien placés : " + score[0]);
-		
-		//Si le score obtenu est le même que le score gagnant, cela veut dire que l'ordi a trouvé la solution
-		//La méthode s'arrête et renvoit true
+
+		// Si le score obtenu est le même que le score gagnant, cela veut dire que
+		// l'ordi a trouvé la solution
+		// La méthode s'arrête et renvoit true
 		if (isSame(score, gagnant)) {
 			return true;
 		}
-		
-		System.out.println();
 
+		System.out.println();
 
 		ArrayList<byte[]> listeCombiCopie = new ArrayList<>(listeCombi);
 
@@ -102,7 +98,7 @@ public class DefenseMastermind {
 
 			// Deuxième boucle parcourant la proposition
 			for (int j = 0; j < nbCases; j++) {
-				
+
 				int cmb = proposition[j];
 				// Comparaison de la proposition par rapport à la combinaison
 				if (cmb == solution[i]) {
@@ -115,14 +111,16 @@ public class DefenseMastermind {
 			}
 
 		}
-		//L'indice 0 du tableau score contient le nombre de bien placé
-		//L'indice 1 du tableau score contient le nombre de présents mais mal placé
+		// L'indice 0 du tableau score contient le nombre de bien placé
+		// L'indice 1 du tableau score contient le nombre de présents mais mal placé
 		score[0] = bienPlace;
 		score[1] = malPlace;
 		return score;
 	}
-//Méthode pour comparer le score de la proposition de l'ordinateur et la solution obtenu
-// grâce à la méthode compare()
+
+	// Méthode pour comparer le score de la proposition de l'ordinateur et la
+	// solution obtenu
+	// grâce à la méthode compare()
 	public boolean isSame(byte[] a, byte[] b) {
 		for (int i = 0; i < 2; i++) {
 			if (a[i] != b[i]) {
@@ -132,10 +130,7 @@ public class DefenseMastermind {
 		return true;
 	}
 
-
-	
 	private void genAllSolution(byte j) {
-
 
 		if (j >= nbCases) {
 			listeCombi.add(combiNb.clone());

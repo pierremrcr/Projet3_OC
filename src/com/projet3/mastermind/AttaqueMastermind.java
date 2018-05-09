@@ -1,6 +1,5 @@
 package com.projet3.mastermind;
 
-
 import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,55 +12,52 @@ public class AttaqueMastermind {
 	Scanner sc = new Scanner(System.in);
 
 	public AttaqueMastermind(byte solutionOrdi[], byte nbCases, byte nbChiffres) {
-		
+
 		this.solutionOrdi = solutionOrdi;
 		this.nbCases = nbCases;
 		this.nbChiffres = nbChiffres;
 	}
-	
+
 	public boolean jeu() {
-	
+
 		String str = null;
 
+		do {
 
-	do {
-				
-			
-			System.out.println("Veuillez proposer une combinaison de " + nbCases + " chiffres entre 0 et "+nbChiffres);
-			 
-		    str = sc.nextLine();
-		    
-		   
-		    if (!str.matches("[0-"+nbChiffres+"]+") || str.length() != nbCases ) {
-		    	System.out.println();
-		    	System.out.println("Votre combinaison doit exclusivement être composé de "+ nbCases +" chiffres de 0 à "+nbChiffres);
-		    	System.out.println();
-		    }
-		    
-		    
-			} while (!str.matches("[0-"+nbChiffres+"]+") || str.length() != nbCases);
-			
-			byte [] tab = new byte[nbCases];
-			
-			// On caste la combinaison dans un entier puisque sc.nextLine() est un String
-			for (int i = 0; i < nbCases; i++) {
-				// Chaque caractère de la proposition est casté pour avoir un int
-				byte cmb = (byte) Character.getNumericValue(str.charAt(i));
-				tab[i] = cmb;
-			}
-					
-			if (compare(tab) == true) {
-				return true;
+			System.out
+					.println("Veuillez proposer une combinaison de " + nbCases + " chiffres entre 0 et " + nbChiffres);
 
+			str = sc.nextLine();
+
+			if (!str.matches("[0-" + nbChiffres + "]+") || str.length() != nbCases) {
+				System.out.println();
+				System.out.println("Votre combinaison doit exclusivement être composé de " + nbCases
+						+ " chiffres de 0 à " + nbChiffres);
+				logger.warn(
+						"Soit l'utilisateur n'a pas respecté le nb de cases ou l'intervalle des chiffres soit il n'a pas renseigné de chiffres");
+				System.out.println();
 			}
-			else 
+
+		} while (!str.matches("[0-" + nbChiffres + "]+") || str.length() != nbCases);
+
+		byte[] tab = new byte[nbCases];
+
+		// On caste la combinaison dans un entier puisque sc.nextLine() est un String
+		for (int i = 0; i < nbCases; i++) {
+			// Chaque caractère de la proposition est casté pour avoir un int
+			byte cmb = (byte) Character.getNumericValue(str.charAt(i));
+			tab[i] = cmb;
+		}
+
+		if (compare(tab) == true) {
+			return true;
+
+		} else
 			return false;
-			
+
 	}
 
-
-
-	boolean compare(byte[]proposition) {
+	boolean compare(byte[] proposition) {
 		// boolean combi = true;
 		int mal = 0, bien = 0;
 		// Première boucle parcourant la combinaison à deviner
@@ -70,7 +66,7 @@ public class AttaqueMastermind {
 			boolean malPlace = false;
 			// Deuxième boucle parcourant la proposition
 			for (int j = 0; j < nbCases; j++) {
-				
+
 				byte cmb = proposition[j];
 				// Comparaison de la proposition par rapport à la combinaison
 				if (cmb == solutionOrdi[i]) {
@@ -96,5 +92,3 @@ public class AttaqueMastermind {
 	}
 
 }
-
-
