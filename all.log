@@ -1,0 +1,47 @@
+
+2018-05-07 10:46:50.346 [main] TRACE com.projet3.Main - l'utilisateur a choisi le jeu 1
+2018-05-07 10:46:52.327 [main] TRACE com.projet3.Main - l'utilisateur a choisi le mode 2
+2018-05-07 10:48:20.391 [main] TRACE com.projet3.Main - l'utilisateur a choisi le jeu 1
+2018-05-07 10:48:23.387 [main] TRACE com.projet3.Main - l'utilisateur a choisi le mode 3
+2018-05-07 10:58:07.095 [main] TRACE com.projet3.Main - l'utilisateur a choisi le jeu 1
+2018-05-07 10:58:09.768 [main] TRACE com.projet3.Main - l'utilisateur a choisi le mode 1
+2018-05-07 10:59:10.943 [main] TRACE com.projet3.Main - l'utilisateur a choisi le jeu 3
+2018-05-07 10:59:40.974 [main] WARN  com.projet3.Main - L'utilisateur n'a pas rentré de chiffres entre 1 et 3 compris
+2018-05-07 11:01:19.182 [main] TRACE com.projet3.Main - l'utilisateur a choisi le jeu 1
+2018-05-07 11:01:21.885 [main] TRACE com.projet3.Main - l'utilisateur a choisi le mode 1
+2018-05-07 11:02:43.485 [main] TRACE com.projet3.Main - l'utilisateur a choisi le jeu 3
+2018-05-07 11:03:14.464 [main] WARN  com.projet3.Main - L'utilisateur n'a pas rentré de chiffres entre 1 et 3 compris
+2018-05-07 11:05:07.992 [main] WARN  com.projet3.Main - L'utilisateur n'a pas rentré de chiffres entre 1 et 3 compris
+2018-05-07 11:06:43.675 [main] TRACE com.projet3.Main - l'utilisateur a choisi le jeu 3
+2018-05-07 11:07:23.950 [main] WARN  com.projet3.Main - L'utilisateur n'a pas rentré de chiffres entre 1 et 3 compris
+2018-05-07 11:13:35.646 [main] TRACE com.projet3.Main - l'utilisateur a choisi le jeu 1
+2018-05-07 11:13:37.536 [main] TRACE com.projet3.Main - l'utilisateur a choisi le mode 1
+2018-05-07 11:14:15.490 [main] TRACE com.projet3.Main - l'utilisateur a choisi le jeu 1
+2018-05-07 11:14:17.800 [main] TRACE com.projet3.Main - l'utilisateur a choisi le mode 1
+2018-05-07 11:16:44.631 [main] TRACE com.projet3.Main - l'utilisateur a choisi le jeu 1
+2018-05-07 11:16:48.476 [main] TRACE com.projet3.Main - l'utilisateur a choisi le mode 1
+2018-05-07 11:20:56.822 [main] WARN  com.projet3.Main - L'utilisateur n'a pas rentré de chiffres entre 1 et 3 compris
+2018-05-07 11:22:21.768 [main] TRACE com.projet3.Main - l'utilisateur a choisi le jeu 3
+2018-05-07 11:22:42.450 [main] WARN  com.projet3.Main - L'utilisateur n'a pas rentré de chiffres entre 1 et 3 compris
+2018-05-07 11:23:30.808 [main] TRACE com.projet3.Main - l'utilisateur a choisi le jeu 1
+2018-05-07 11:23:33.314 [main] TRACE com.projet3.Main - l'utilisateur a choisi le mode 1
+2018-05-07 11:23:44.570 [main] TRACE com.projet3.Main - l'utilisateur a choisi la réponse2
+2018-05-07 11:23:47.729 [main] TRACE com.projet3.Main - l'utilisateur a choisi la réponse1
+2018-05-07 11:23:49.753 [main] TRACE com.projet3.Main - l'utilisateur a choisi le jeu 3
+2018-05-07 11:24:04.745 [main] TRACE com.projet3.Main - l'utilisateur a choisi le jeu 3
+2018-05-07 11:26:17.091 [main] TRACE com.projet3.Main - l'utilisateur a choisi le jeu 1
+2018-05-07 11:26:19.993 [main] TRACE com.projet3.Main - l'utilisateur a choisi le mode 1
+2018-05-07 11:26:28.727 [main] TRACE com.projet3.Main - l'utilisateur a choisi la réponse2
+2018-05-07 11:26:32.599 [main] TRACE com.projet3.Main - l'utilisateur a choisi la réponse2
+2018-05-07 11:34:54.836 [main] WARN  com.projet3.Main - L'utilisateur n'a pas rentré de chiffres entre 1 et 3 compris
+2018-05-07 11:52:07.714 [main] TRACE com.projet3.Main - l'utilisateur a choisi le jeu 3
+2018-05-07 11:53:08.076 [main] TRACE com.projet3.Main - l'utilisateur a choisi le jeu 1
+2018-05-07 11:53:11.352 [main] TRACE com.projet3.Main - l'utilisateur a choisi le mode 1
+2018-05-07 11:53:53.491 [main] WARN  com.projet3.Main - L'utilisateur n'a pas rentré de chiffres entre 1 et 3 compris
+2018-05-07 11:55:01.126 [main] WARN  com.projet3.Main - L'utilisateur n'a pas rentré de chiffres entre 1 et 3 compris
+2018-05-07 12:51:25.714 [main] WARN  com.projet3.Main - L'utilisateur n'a pas rentré de chiffres entre 1 et 3 compris
+2018-05-07 13:23:24.197 [main] TRACE com.projet3.Main - l'utilisateur a choisi le jeu 1
+2018-05-07 13:23:26.696 [main] TRACE com.projet3.Main - l'utilisateur a choisi le mode 1
+2018-05-07 13:23:57.842 [main] TRACE com.projet3.Main - l'utilisateur a choisi la réponse2
+2018-05-07 13:23:59.933 [main] TRACE com.projet3.Main - l'utilisateur a choisi la réponse2
+2018-05-14 14:18:46.427 [main] WARN  com.projet3.Main - L'utilisateur n'a pas rentré de chiffres entre 1 et 3 compris

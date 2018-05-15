@@ -1,6 +1,5 @@
 package com.projet3.jeuplusmoins;
 
-
 import java.util.Random;
 
 import org.apache.logging.log4j.LogManager;

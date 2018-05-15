@@ -13,22 +13,18 @@ import com.projet3.mastermind.ModeChallengerMastermind;
 import com.projet3.mastermind.ModeDefenseurMastermind;
 import com.projet3.mastermind.ModeDuelMastermind;
 
-
 public class ChoixJeu {
-	
+
 	int nbChiffres = 0;
 	int nbCases = 0;
 	int nbEssais = 0;
 	boolean modedev = false;
 	Properties prop = new Properties();
 	InputStream input = null;
-	
 
-	public Mode GetMode(int jeu, int mode) {
-		
-	try {
-			
-			
+	public Mode getMode(int jeu, int mode) {
+
+		try {
 
 			input = new FileInputStream("config.properties");
 
@@ -51,8 +47,7 @@ public class ChoixJeu {
 				}
 			}
 		}
-	
-		
+
 		if (jeu == 1) {
 			System.out.println("Vous avez choisi le jeu du +/-");
 			if (mode == 1) {
@@ -63,35 +58,31 @@ public class ChoixJeu {
 				System.out.println("Vous avez choisi le mode Défenseur");
 				System.out.println();
 				return new ModeDefenseurPlusMoins((byte) nbCases, (byte) nbEssais);
-			} else if (mode == 3 ) {
+			} else if (mode == 3) {
 				System.out.println("Vous avez choisi le mode Duel");
 				System.out.println();
 				return new ModeDuelPlusMoins((byte) nbCases, modedev);
 			}
-			
-			} else if (jeu == 2) {
-				System.out.println("Vous avez choisi le jeu du Mastermind");
-				if (mode == 1) {
-					System.out.println("Vous avez choisi le mode Challenger");
-					System.out.println();
-					return new ModeChallengerMastermind((byte) nbCases,(byte) nbChiffres, modedev, (byte) nbEssais);
-				} else if (mode == 2) {
-					System.out.println("Vous avez choisi le mode Défenseur");
-					System.out.println();
-					return new ModeDefenseurMastermind((byte) nbCases,(byte) nbChiffres, (byte) nbEssais);
-				} else if (mode == 3) {
-					System.out.println("Vous avez choisi le mode Duel");
-					System.out.println();
-					return new ModeDuelMastermind((byte) nbCases,(byte) nbChiffres, modedev);
-				}
-				
-		
+
+		} else if (jeu == 2) {
+			System.out.println("Vous avez choisi le jeu du Mastermind");
+			if (mode == 1) {
+				System.out.println("Vous avez choisi le mode Challenger");
+				System.out.println();
+				return new ModeChallengerMastermind((byte) nbCases, (byte) nbChiffres, modedev, (byte) nbEssais);
+			} else if (mode == 2) {
+				System.out.println("Vous avez choisi le mode Défenseur");
+				System.out.println();
+				return new ModeDefenseurMastermind((byte) nbCases, (byte) nbChiffres, (byte) nbEssais);
+			} else if (mode == 3) {
+				System.out.println("Vous avez choisi le mode Duel");
+				System.out.println();
+				return new ModeDuelMastermind((byte) nbCases, (byte) nbChiffres, modedev);
+			}
+
 		}
 		return null;
-		
-	}
-}
-		
 
-	
-	
+	}
+
+}

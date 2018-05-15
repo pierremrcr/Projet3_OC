@@ -15,7 +15,7 @@ public class ModeDefenseurMastermind implements Mode {
 	byte nbCases;
 	static final Logger logger = LogManager.getLogger();
 
-	public ModeDefenseurMastermind(byte nbCases, byte nbEssais, byte nbChiffres ) {
+	public ModeDefenseurMastermind(byte nbCases, byte nbEssais, byte nbChiffres) {
 		this.nbEssais = nbEssais;
 		this.nbChiffres = nbChiffres;
 		this.nbCases = nbCases;

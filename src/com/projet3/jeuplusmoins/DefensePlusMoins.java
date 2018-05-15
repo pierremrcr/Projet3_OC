@@ -111,20 +111,6 @@ public class DefensePlusMoins {
 		return true;
 	}
 
-	// Méthode permettant de générer une arrayList comportant toutes les
-	// combinaisons possibles
-	/*
-	 * public ArrayList<int[]> generate() { // on crée une ArrayList qui va
-	 * comporter toutes les combinaisons ArrayList<int[]> combi = new ArrayList<>();
-	 * // On crée 4 boucles afin de générer toutes les combinaisons de 4 chiffres //
-	 * allant de 0 à 9 for (int i = 0; i <= 9; i++) { for (int j = 0; j <= 9; j++) {
-	 * for (int k = 0; k <= 9; k++) { for (int l = 0; l <= 9; l++) { int tab[] = {
-	 * i, j, k, l }; // Chaque combinaison généré par les boucles est stocké dans la
-	 * ArrayList combi combi.add(tab);
-	 * 
-	 * } } } } return combi; }
-	 */
-
 	private void genAllSolution(byte j) {
 
 		if (j >= nbCases) {

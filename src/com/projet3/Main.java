@@ -12,7 +12,6 @@ public class Main {
 
 	public static void main(String[] args) {
 
-
 		Scanner sc = new Scanner(System.in);
 		int nbChiffres = 0;
 		int nbCases = 0;
@@ -30,10 +29,7 @@ public class Main {
 		} else {
 			modedev = false;
 		}
-		
-		
 
-		
 		System.out.print("----------------------");
 		System.out.print("MASTERMIND");
 		System.out.print("----------------------");
@@ -49,7 +45,7 @@ public class Main {
 			System.out.println("3 pour quitter");
 			System.out.println();
 			System.out.print("Votre choix : ");
-			
+
 			if (!sc.hasNextInt()) {
 
 				System.out.println();
@@ -75,7 +71,7 @@ public class Main {
 					System.out.println("3 pour le mode Duel");
 					System.out.println();
 					System.out.print("Votre choix : ");
-					
+
 					if (!sc.hasNextInt()) {
 
 						System.out.println();
@@ -99,15 +95,18 @@ public class Main {
 				} while (mode != 1 && mode != 2 && mode != 3);
 
 				do {
-
+					// Création d'un objet qui permet à l'utilisateur de choisir un jeu et un mode
 					ChoixJeu choix = new ChoixJeu();
-					Mode modeJoueur = choix.GetMode(jeu, mode);
+					// La méthode getMode() renvoit le jeu et le mode que l'utilisateur a choisi
+					// que nous stockons dans une variable de type Mode qui est une interface
+					Mode modeJoueur = choix.getMode(jeu, mode);
+					// Nous appelons la méthode jeu() du jeu et mode en question
 					modeJoueur.jeu();
 
 					do {
 
 						System.out.println("Voulez vous rejouer ? 1 : OUI 2 : NON");
-						
+
 						if (!sc.hasNextInt()) {
 
 							System.out.println();
@@ -141,11 +140,11 @@ public class Main {
 					}
 					answer2 = sc.nextInt();
 				}
-				if (answer2 ==2) {
+				if (answer2 == 2) {
 					System.out.println("A bientôt");
 					System.out.println();
 				}
-			} else if (jeu == 3 || answer2==2) {
+			} else if (jeu == 3 || answer2 == 2) {
 				System.out.println("A bientôt");
 				System.out.println();
 			} else {
@@ -157,7 +156,4 @@ public class Main {
 
 	}
 
-	
 }
-	
-	
