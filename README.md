@@ -18,5 +18,5 @@ Pour tester le jeu :
          . Créez un dossier et y glisser ces 2 fichiers
          . Depuis le terminal de votre PC ou mac, positionnez vous dans le dossier où se trouvent le jar et le properties 
          . Executez la commande : java -jar P3.jar et le jeu se lance 
-         . Vous pouvez changer les paramètres du jeu (nombre d'essais, de chiffres ou de cases) à travers le fichiers                    config.properties
+         . Vous pouvez changer les paramètres du jeu (nombre d'essais, de chiffres ou de cases) à travers le fichiers     config.properties
 
